@@ -1,39 +1,44 @@
-let inicio=prompt("¿Deseas iniciar? Si/No");
-inicio=inicio.toLowerCase();
-if (inicio==="si"){
-    while(inicio == "si"){
-        /* Datos, ingresa el nombre y los numeros de autos trabajados */
-        let=nombre=prompt("Ingresar nombre del empleado");
-        function mostrar_empleado(){
-            console.log("Empleado:",nombre);
-        }
-        let autoslavados=parseInt(prompt("Autos lavados"));
-        let autosencerados=parseInt(prompt("Autos encerados"));
-        let autosaspirados=parseInt(prompt("Autos aspirados"));
-        autostotal=(autoslavados)+(autosencerados)+(autosaspirados);
-        /* Calcular el precio por cada auto trabajado */
-        let costolavados=200*autoslavados;
-        let costoencerados=400*autosencerados;
-        let costoaspirados=100*autosaspirados;
-        let total=(costolavados)+(costoencerados)+(costoaspirados);
-        /* Impuesto */
-        let impuesto=0.21;
-        let costoimpuesto=total*(1-impuesto);
-        /* Muestra la informacion total */
-        mostrar_empleado();
-        console.log("Auto trabajados en total:", autostotal);
-        console.log("Paga por sus",autostotal,"autos trabajados:$",total);
-        console.log("Su paga es de:$",costoimpuesto,("(Con impuestos)"));
-        inicio=prompt("¿Quieres agregar mas empleados? Si/No")
-        inicio=inicio.toLowerCase();
-        }
-        console.log("Hasta luego!");
-}   
-else if (inicio==="no"){
-    console.log("Hasta luego!");
+let inicio = prompt("¿Deseas iniciar? Si/No");
+inicio = inicio.toLowerCase();
+if (inicio === "si") {
+  const empleados = [];
+  while (inicio === "si"){
+    /* Datos, ingresa el nombre y los numeros de autos trabajados */
+    const empleado = {};
+    empleado.nombre = prompt("Ingresar nombre del empleado");
+    empleado.mostrarEmpleado = function (nombre){
+      console.log("Empleado:", this.nombre);
+    };
+    empleado.autoslavados=parseInt(prompt("Autos lavados"));
+    empleado.autosencerados=parseInt(prompt("Autos encerados"));
+    empleado.autosaspirados=parseInt(prompt("Autos aspirados"));
+    empleado.autostotal=empleado.autoslavados+empleado.autosencerados+empleado.autosaspirados;
+    /* Calcular el precio por cada auto trabajado */
+    empleado.costolavados=200 * empleado.autoslavados;
+    empleado.costoencerados=400 * empleado.autosencerados;
+    empleado.costoaspirados=100 * empleado.autosaspirados;
+    empleado.total=empleado.costolavados+empleado.costoencerados+empleado.costoaspirados;
+    /* Impuesto */
+    const impuesto = 0.21;
+    empleado.costoimpuesto = empleado.total * (1 - impuesto);
+    empleados.push(empleado);
+    /* Muestra la informacion total */
+    empleado.mostrarEmpleado();
+    console.log("Auto trabajados en total:", empleado.autostotal);
+    console.log("Paga por sus",empleado.autostotal,"autos trabajados: $",empleado.total);
+    console.log("Su paga es de: $",empleado.costoimpuesto,"(Con impuestos)");
+    inicio = prompt("¿Quieres agregar más empleados? Si/No");
+    inicio = inicio.toLowerCase();
+  }
+  console.log("Empleados registrados:");
+  empleados.forEach(function (empleado) {
+    empleado.mostrarEmpleado();
+  });
+  console.log("Hasta luego!");
+} 
+else if (inicio === "no") {
+  console.log("Hasta luego!");
+} 
+else {
+  console.log("Opción no válida");
 }
-else{
-    console.log("Opcion no valida")
-}
-
-
