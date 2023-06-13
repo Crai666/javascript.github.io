@@ -1,44 +1,52 @@
-let inicio = prompt("¿Deseas iniciar? Si/No");
-inicio = inicio.toLowerCase();
-if (inicio === "si") {
-  const empleados = [];
-  while (inicio === "si"){
-    /* Datos, ingresa el nombre y los numeros de autos trabajados */
-    const empleado = {};
-    empleado.nombre = prompt("Ingresar nombre del empleado");
-    empleado.mostrarEmpleado = function (nombre){
-      console.log("Empleado:", this.nombre);
-    };
-    empleado.autoslavados=parseInt(prompt("Autos lavados"));
-    empleado.autosencerados=parseInt(prompt("Autos encerados"));
-    empleado.autosaspirados=parseInt(prompt("Autos aspirados"));
-    empleado.autostotal=empleado.autoslavados+empleado.autosencerados+empleado.autosaspirados;
-    /* Calcular el precio por cada auto trabajado */
-    empleado.costolavados=200 * empleado.autoslavados;
-    empleado.costoencerados=400 * empleado.autosencerados;
-    empleado.costoaspirados=100 * empleado.autosaspirados;
-    empleado.total=empleado.costolavados+empleado.costoencerados+empleado.costoaspirados;
-    /* Impuesto */
-    const impuesto = 0.21;
-    empleado.costoimpuesto = empleado.total * (1 - impuesto);
-    empleados.push(empleado);
-    /* Muestra la informacion total */
-    empleado.mostrarEmpleado();
-    console.log("Auto trabajados en total:", empleado.autostotal);
-    console.log("Paga por sus",empleado.autostotal,"autos trabajados: $",empleado.total);
-    console.log("Su paga es de: $",empleado.costoimpuesto,"(Con impuestos)");
-    inicio = prompt("¿Quieres agregar más empleados? Si/No");
-    inicio = inicio.toLowerCase();
-  }
-  console.log("Empleados registrados:");
-  empleados.forEach(function (empleado) {
-    empleado.mostrarEmpleado();
-  });
-  console.log("Hasta luego!");
-} 
-else if (inicio === "no") {
-  console.log("Hasta luego!");
-} 
-else {
-  console.log("Opción no válida");
+let btn_enviar= document.getElementById("btn_enviar");
+    btn_enviar.addEventListener("click", function() {
+let nombreinput = document.getElementById("nombreinput");
+let nombre= nombreinput.value;
+let resultadosdiv= document.getElementById("resultadosdiv");
+resultadosdiv.innerHTML= "Bienvenido, "+ nombre;
+
+let trabajadorinput= document.getElementById("trabajadorinput");
+let nombretrabajador= trabajadorinput.value;
+
+let autoslavadosinput= document.getElementById("autoslavadosinput");
+let autoslavados= autoslavadosinput.value;
+
+let autosaspiradosinput= document.getElementById("autosaspiradosinput");
+let autosaspirados= autosaspiradosinput.value;
+
+let autoslustradosinput= document.getElementById("autoslustradosinput");
+let autoslustrados= autoslustradosinput.value;
+
+let precioautolavado= 100;
+let precioautoaspirado= 50;
+let precioautolustrado= 120;
+
+let totalautoslavado= precioautolavado * autoslavados;
+let totalautosaspirado= precioautoaspirado * autosaspirados;
+let totalautoslustrado= precioautolustrado * autoslustrados;
+
+let total = totalautoslavado + totalautosaspirado + totalautoslustrado;
+
+let iva= 0.21;
+let totaliva= total - (total * iva);
+
+resultadosdiv.innerHTML += "<br>Nombre del trabajador: "+nombretrabajador;
+resultadosdiv.innerHTML += "<br>Cantidad de autos lavados: "+autoslavados;
+resultadosdiv.innerHTML += "<br>Cantidad de autos aspirados: "+autosaspirados;
+resultadosdiv.innerHTML += "<br>Cantidad de autos lustrados: "+autoslustrados;
+resultadosdiv.innerHTML += "<br>Monto total de los autos trabajados: $"+total;
+resultadosdiv.innerHTML += "<br>Monto total con descuento de IVA: $"+totaliva;
+
+let usdata = {
+    nombre: nombre,
+    nombretrabajador: nombretrabajador,
+    autoslavados: autoslavados,
+    autosaspirados: autosaspirados,
+    autoslustrados: autoslustrados,
+    total: total,
+    totaliva: totaliva
+};
+let jsondata = JSON.stringify(usdata);
+localStorage.setItem("usdata", jsondata);
 }
+);
