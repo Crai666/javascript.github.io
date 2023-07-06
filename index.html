@@ -3,28 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="shortcut icon" href="https://images.emojiterra.com/twitter/v13.1/512px/1f4a7.png" type="image/x-icon">
     <title>Autolavado</title>
 </head>
 <body>
+    <div class="logodiv">
+    <img src="https://static.wixstatic.com/media/fdb1aa_5de2b4fa1fdd4ac98c32582b744e061f~mv2.png/v1/fit/w_2500,h_1330,al_c/fdb1aa_5de2b4fa1fdd4ac98c32582b744e061f~mv2.png" alt="logo" width="150px">
+    </div>
+    <div class="menu">
     <h1>Datos del trabajador</h1>
     <label for="nombreinput">Ingresa tu nombre:</label>
     <input type="text" id="nombreinput">
-    <br><br>
     <label for="trabajadorinput">Nombre del trabajador:</label>
     <input type="text" id="trabajadorinput">
-    <br><br>
     <label for="autoslavadosinput">Cantidad de autos lavados:</label>
     <input type="number" id="autoslavadosinput">
-    <br><br>
     <label for="autosaspiradosinput">Cantidad de autos aspirados:</label>
     <input type="number" id="autosaspiradosinput">
-    <br><br>
     <label for="autoslustradosinput">Cantidad de autos lustrados:</label>
     <input type="number" id="autoslustradosinput">
-    <br><br>
     <button id="btn_enviar">Enviar</button>
+    <button id="btn_ver_clima">Ver Clima</button>
 
+    </div>
     <div id="resultadosdiv"></div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="./index.js"></script>
 </body>
 </html>

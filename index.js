@@ -1,5 +1,32 @@
+let btn_ver_clima=document.getElementById("btn_ver_clima");
+btn_ver_clima.addEventListener("click", function() {
+  navigator.geolocation.getCurrentPosition(function(posicion) {
+    let lat=posicion.coords.latitude;
+    let long=posicion.coords.longitude;
+    let key="3d01c63b90277f07cafb5c331fb6572c";
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${key}&units=metric&lang=es`)
+      .then(response=> response.json())
+      .then(data=> {
+        let estadoClima = data.weather[0].main;
+        Toastify({
+          text: `Estado del clima: ${estadoClima}`,
+          className: "info",
+          style: {
+            background: "linear-gradient(to right, #414141, #2B2B2B)",
+          }
+        }).showToast();
+      });
+  });
+});
 let btn_enviar= document.getElementById("btn_enviar");
     btn_enviar.addEventListener("click", function() {
+        Toastify({
+            text: "Datos enviados.",
+            className: "info",
+            style: {
+              background: "linear-gradient(to right, #414141, #2B2B2B)",
+            }
+          }).showToast();
 let nombreinput = document.getElementById("nombreinput");
 let nombre= nombreinput.value;
 let resultadosdiv= document.getElementById("resultadosdiv");
